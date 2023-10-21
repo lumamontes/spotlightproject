@@ -1,0 +1,60 @@
+---
+import SectionTitle from "../components/SectionTitle.astro";
+import Layout from "../layouts/Layout.astro";
+export function getStaticPaths() {
+  return [
+    { params: { 
+        slug: 'luanagoes',
+        },
+        props: {
+        name: 'Luana Góes',
+        description: 'Desenvolvedora Front-end, apaixonada por tecnologia e design. Acredito que a tecnologia pode mudar o mundo e que o design é uma ferramenta poderosa para isso. Sou uma pessoa curiosa, que adora aprender e compartilhar conhecimento. Nas horas vagas gosto de ler, assistir séries e filmes, jogar e ouvir música.',
+        social: [
+          {
+            name: 'Instagram',
+            url: 'https://www.instagram.com/luanagoes',
+            },
+            {
+            name: 'Twitter',
+            url: 'https://twitter.com/luanagoes',
+            },
+        ],
+        flip_book_pdf_link: "https://drive.google.com/file/d/0B8drXawOjAngdXgtb01QN0ZrSDA/preview"
+        } 
+},
+    { params: { slug: '2' } },
+    { params: { slug: '3' } }
+  ];
+}
+
+const { slug } = Astro.params;
+const { name, description, social, flip_book_pdf_link } = Astro.props;
+
+
+---
+
+<Layout title={`Interview with ${name}`}>
+    <SectionTitle title={`Interview with ${name}`} />
+        <p>{description}</p>
+        <p>Follow <strong>{name}</strong></p>
+        <nav>
+            {social.map((item: any) => (
+                <a href={item.url} target="_blank" rel="noopener noreferrer">{item.name}</a>
+            ))}
+        </nav>
+        <!-- Flipbook -->
+        <div id="magazine">
+            <div><span class="text">Page 1</span></div>
+            <div><span class="text">Page 2</span></div>
+            <div><span class="text">Page 3</span></div>
+        </div>
+    </SectionTitle>
+</Layout>
+
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/samples/basic/css/basic.css">
+
+
+<script>
+     $('#magazine').turn({gradients: true, acceleration: true});
+  </script>
