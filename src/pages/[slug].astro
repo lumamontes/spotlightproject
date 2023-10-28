@@ -1,4 +1,5 @@
 ---
+import Avatar from "../components/Avatar.astro";
 import SectionTitle from "../components/SectionTitle.astro";
 import Layout from "../layouts/Layout.astro";
 export function getStaticPaths() {
@@ -9,6 +10,7 @@ export function getStaticPaths() {
         props: {
         name: 'Luana Góes',
         description: 'Desenvolvedora Front-end, apaixonada por tecnologia e design. Acredito que a tecnologia pode mudar o mundo e que o design é uma ferramenta poderosa para isso. Sou uma pessoa curiosa, que adora aprender e compartilhar conhecimento. Nas horas vagas gosto de ler, assistir séries e filmes, jogar e ouvir música.',
+        image: 'https://avatars.githubusercontent.com/u/60052718?v=4',
         social: [
           {
             name: 'Instagram',
@@ -18,6 +20,10 @@ export function getStaticPaths() {
             name: 'Twitter',
             url: 'https://twitter.com/luanagoes',
             },
+            {
+            name: 'Twitter',
+            url: 'https://twitter.com/luanagoes',
+            }
         ],
         flip_book_pdf_link: "https://drive.google.com/file/d/0B8drXawOjAngdXgtb01QN0ZrSDA/preview"
         } 
@@ -28,33 +34,49 @@ export function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const { name, description, social, flip_book_pdf_link } = Astro.props;
+const { name, description, social, image, flip_book_pdf_link } = Astro.props;
 
 
 ---
 
 <Layout title={`Interview with ${name}`}>
-    <SectionTitle title={`Interview with ${name}`} />
-        <p>{description}</p>
-        <p>Follow <strong>{name}</strong></p>
-        <nav>
-            {social.map((item: any) => (
-                <a href={item.url} target="_blank" rel="noopener noreferrer">{item.name}</a>
-            ))}
-        </nav>
-        <!-- Flipbook -->
-        <div id="magazine">
-            <div><span class="text">Page 1</span></div>
-            <div><span class="text">Page 2</span></div>
-            <div><span class="text">Page 3</span></div>
+    <section>
+        <article class="bg-gray-300 text-black max-w-6xl mx-auto min-h-screen border rounded-3xl p-8 mt-8">
+            <div class="flex justify-center items-center gap-3">
+                <Avatar name={name} picture={image} />
+                <div>
+                    <h1 class="text-6xl">Interview with <strong>{name}</strong></h1>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto mt-4 justify-center">
+                <p>{description}</p>
+                <br>
+                <p class="text-center">Follow <strong>{name}</strong></p>
+                <nav class="text-center flex gap-1 justify-center">
+                    {social.map((item: any) => (
+                        <i class="fab fa-twitter"></i>
+                        <a href={item.url} target="_blank" rel="noopener noreferrer"><strong>{item.name}</strong></a>
+                    ))}
+                </nav>
+            </div>
+            <div id="iframe">
+                <iframe style="width:100%;height:100%" src={flip_book_pdf_link} seamless="seamless"
+            scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
         </div>
-    </SectionTitle>
+        </article>
+    </section>
 </Layout>
 
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/samples/basic/css/basic.css">
 
+<style is:inline>
+    section {
+        background: url('bg2.png') no-repeat center center fixed; 
+        background-size: cover;
+        padding-top: 6rem;
+    }
 
-<script>
-     $('#magazine').turn({gradients: true, acceleration: true});
-  </script>
+    #iframe {
+        /* width: 100%; */
+        height: 100vh;
+    }
+</style>
