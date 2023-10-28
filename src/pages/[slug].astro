@@ -2,39 +2,33 @@
 import Avatar from "../components/Avatar.astro";
 import SectionTitle from "../components/SectionTitle.astro";
 import Layout from "../layouts/Layout.astro";
-export function getStaticPaths() {
-  return [
-    { params: { 
-        slug: 'luanagoes',
-        },
-        props: {
-        name: 'Luana Góes',
-        description: 'Desenvolvedora Front-end, apaixonada por tecnologia e design. Acredito que a tecnologia pode mudar o mundo e que o design é uma ferramenta poderosa para isso. Sou uma pessoa curiosa, que adora aprender e compartilhar conhecimento. Nas horas vagas gosto de ler, assistir séries e filmes, jogar e ouvir música.',
-        image: 'https://avatars.githubusercontent.com/u/60052718?v=4',
-        social: [
-          {
-            name: 'Instagram',
-            url: 'https://www.instagram.com/luanagoes',
-            },
-            {
-            name: 'Twitter',
-            url: 'https://twitter.com/luanagoes',
-            },
-            {
-            name: 'Twitter',
-            url: 'https://twitter.com/luanagoes',
-            }
-        ],
-        flip_book_pdf_link: "https://drive.google.com/file/d/0B8drXawOjAngdXgtb01QN0ZrSDA/preview"
-        } 
-},
-    { params: { slug: '2' } },
-    { params: { slug: '3' } }
-  ];
+import { contentfulClient } from "../lib/contentful";
+import type { Interview } from "./index.astro";
+
+
+export async function getStaticPaths() {
+    const entries = await contentfulClient.getEntries<Interview>({
+    content_type: "interviews",
+    });
+
+  const pages = entries.items.map((item) => ({
+    params: { slug: item.fields.slug },
+    props: {
+        slug: item.fields.slug,
+        name: item.fields.name,
+        description: item.fields.description,
+        image: item['fields']['image']['fields']['file']['url'],
+        urlFlipBook: item.fields.urlFlipbook,
+        socials: item.fields.social,
+    },
+  }));
+
+  return pages;
+
 }
 
-const { slug } = Astro.params;
-const { name, description, social, image, flip_book_pdf_link } = Astro.props;
+
+const { slug, name, description,image,urlFlipBook, socials} = Astro.props;
 
 
 ---
@@ -42,25 +36,23 @@ const { name, description, social, image, flip_book_pdf_link } = Astro.props;
 <Layout title={`Interview with ${name}`}>
     <section>
         <article class="bg-gray-300 text-black max-w-6xl mx-auto min-h-screen border rounded-3xl p-8 mt-8">
-            <div class="flex justify-center items-center gap-3">
+            <div class="flex justify-center items-center gap-4 flex-col ">
                 <Avatar name={name} picture={image} />
                 <div>
-                    <h1 class="text-6xl">Interview with <strong>{name}</strong></h1>
+                    <h1 class="text-xl md:text-5xl">Interview with <strong>{name}</strong></h1>
                 </div>
             </div>
-            <div class="max-w-3xl mx-auto mt-4 justify-center">
+            <div class="max-w-3xl mx-auto justify-center py-6 text-center">
                 <p>{description}</p>
                 <br>
-                <p class="text-center">Follow <strong>{name}</strong></p>
-                <nav class="text-center flex gap-1 justify-center">
-                    {social.map((item: any) => (
-                        <i class="fab fa-twitter"></i>
-                        <a href={item.url} target="_blank" rel="noopener noreferrer"><strong>{item.name}</strong></a>
+                <nav class="text-center">
+                    {socials.map((item: any) => (
+                        <a href={item} target="_blank" rel="noopener noreferrer" class="underline"><strong>{item}</strong></a>
                     ))}
                 </nav>
             </div>
             <div id="iframe">
-                <iframe style="width:100%;height:100%" src={flip_book_pdf_link} seamless="seamless"
+                <iframe style="width:100%;height:100%" src={urlFlipBook} seamless="seamless"
             scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true"></iframe>
         </div>
         </article>

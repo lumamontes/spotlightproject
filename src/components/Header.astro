@@ -1,11 +1,18 @@
+--- 
+
+const currentPath = Astro.url.pathname;
+
+
+---
 <header>
     <div class="container">
-      <h1 class="logo">Spot<span>Light</span></h1>
-      
+      <a href="/" class="logo">
+          <img src="logo2.png" alt="logo2" width="50px" height="50px">
+      </a>
       <nav class="site-nav">
           <ul>
-            <li><a href=""><i class="fa fa-info site-nav--icon"></i>About</a></li>
-            <li><a href=""><i class="fa fa-envelope site-nav--icon"></i>Contact</a></li>
+            <li><a href="/about" class={currentPath === '/about' ? 'active' : ''} >About</a></li>
+            <li><a href="/contact" class={currentPath === '/contact' ? 'active' : ''} >Contact</a></li>
           </ul> 
       </nav>
       
@@ -23,10 +30,13 @@
   width: 95%;
   max-width: 1000px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 header {
-  color: #EBEBD3;
+  color: #ececec;
   padding: 1em 0;
   position: relative;
   background: transparent;
@@ -39,10 +49,7 @@ header::after {
 }
 
 .logo {
-  float: left;
-  font-size: 1rem;
   margin: 0;
-  text-transform: uppercase;
   font-weight: 700;
 }
 
@@ -54,13 +61,15 @@ header::after {
   position: absolute;
   top: 100%;
   right: 0%;
-  /* background: #464655; */
+  z-index: 9999;
   clip-path: circle(0px at top right);
   transition: clip-path ease-in-out 700ms;
-/*   display: none; */
+  background: #13151b;
+  /*   display: none; */
 }
 
 .site-nav--open {
+  z-index: 9999;
   clip-path: circle(250% at top right);
 /*   display: block; */
 }
@@ -80,16 +89,15 @@ header::after {
 }
 
 .site-nav a {
-  color: #EBEBD3;
+  color: #ececec;
   display: block;
   padding: 2em 4em 2em 1.5em;
-  text-transform: uppercase;
   text-decoration: none;
 }
 
 .site-nav a:hover,
 .site-nav a:focus {
-  background: #E4B363;
+  background: 65, 83, 241;
   color: #464655;
 }
 
@@ -173,6 +181,11 @@ header::after {
   
   .site-nav--icon {
     display: none;
+  }
+
+  .active {
+    color: #fff;
+    border-bottom: 2px solid #fff;
   }
   
 }

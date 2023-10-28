@@ -1,0 +1,33 @@
+---
+import SectionTitle from "../components/SectionTitle.astro";
+import Layout from "../layouts/Layout.astro";
+import { contentfulClient } from "../lib/contentful";
+
+const entries = await contentfulClient.getEntries<any>({
+  content_type: "aboutSpotlight",
+});
+
+---
+<Layout title={`About`}>
+		 <section>
+            <article class="max-w-5xl mx-auto">
+                <h1 class="text-4xl font-bold pb-12 text-center">About</h1>
+                {entries.items.map(item => ( 
+                    <p class="text-2xl px-6">{item.fields.description}</p>
+                ))}
+            </article>
+		</section>
+	</main>
+</Layout>
+
+<style>
+   section {
+        background: url('bg2.png') no-repeat center center fixed; 
+        background-size: cover;
+        padding-top: 6rem;
+        width: 100%;
+        min-height: 80vh;
+        overflow: hidden;
+    }
+
+</style>

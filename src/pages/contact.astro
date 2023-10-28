@@ -1,0 +1,59 @@
+---
+import SectionTitle from "../components/SectionTitle.astro";
+import Layout from "../layouts/Layout.astro";
+import { contentfulClient } from "../lib/contentful";
+import { Icon } from 'astro-icon'
+
+interface ContactSpotlight {
+  description: string;
+  twitter: string;
+  instagram: string;
+  behance: string;
+}
+
+interface ContactSpotlightEntry {
+ contentTypeId: "contactSpotlight";
+  fields: ContactSpotlight;
+}
+
+
+const entries = await contentfulClient.getEntries<ContactSpotlightEntry>({
+  content_type: "contactSpotlight",
+});
+
+---
+<Layout title={`Contact`}>
+     <section>
+            <article class="max-w-5xl mx-auto p-4">
+                <h1 class="text-4xl font-bold pb-12 text-center">Contact</h1>
+                <div class="text-center">
+                {entries.items.map(item => ( 
+                    <p class="text-xl max-w-lg mx-auto px-6">{item.fields.description}</p>
+                    <nav class="flex flex-wrap gap-4 justify-center items-center py-6">
+                        <a href={item.fields.twitter} target="_blank" rel="noopener noreferrer">
+                            <Icon pack="mdi" name="twitter" width="24" height="24" />
+                        </a>
+                        <a href={item.fields.instagram} target="_blank" rel="noopener noreferrer">
+                            <Icon pack="mdi" name="instagram" width="24" height="24" />
+                        </a>
+                        <a href={item.fields.behance} target="_blank" rel="noopener noreferrer">
+                            <Icon pack="mdi" name="behance" width="24" height="24" />
+                        </a>
+                    </nav>
+                ))}
+                </div>
+            </article>
+        
+        </section>
+</Layout>
+
+<style>
+    section {
+        background: url('bg2.png') no-repeat center center fixed; 
+        background-size: cover;
+        padding-top: 6rem;
+        width: 100%;
+        min-height: 80vh;
+        overflow: hidden;
+    }
+</style>

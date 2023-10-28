@@ -16,25 +16,49 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<meta
+		name="description"
+		content="Spotlight Project by Luana"
+	  	/>
+	 	<meta property="og:url" content="https://spotlight.vercel.app" />
+		<meta property="og:site_name" content="https://spotlight.vercel.app" />
+		<meta property="og:type" content="website" />
+		<meta
+		property="og:title"
+		content={title}
+		/>
+		<meta
+		property="og:description"
+		content={title}
+		/>
+		<meta property="og:image" content="https://spotlight.vercel.app/placeholder.png" />
+		
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content="Spotlight Project by Luana" />
+		<meta name="twitter:image" content="https://spotlight.vercel.app/placeholder.png" />
+		<meta name="twitter:card" content="summary" />
+
 	</head>
+
 	<body>
 		<Header />
 		<slot />
 		<footer class="py-4 mt-8 relative">
 			<div class="container mx-auto text-center text-sm">
 				<a href="https://lumamontes.vercel.app" target="_blank" class="text-gray-400 hover:text-white">
-					 Luma Montes
+					 Made by Luma 🗣️
 				</a>
 			</div>
 		</footer>
 	</body>
 </html>
+
 <style is:global>
 	@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
 	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
+		--accent: 65, 83, 241;
+		--accent-light: 116, 180, 238;
 		--accent-dark: 49, 10, 101;
 		--accent-gradient: linear-gradient(
 			45deg,
@@ -59,15 +83,4 @@ const { title } = Astro.props;
 		font-family: 'Montserrat', sans-serif;
 	}
 
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
 </style>

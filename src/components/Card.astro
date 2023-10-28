@@ -16,7 +16,7 @@ const { href, title, body, image } = Astro.props;
 				<img class="w-32 h-32 object-cover rounded-full" src={image} alt={title} />
 			</div>
 		}
-		<div class="link-card-text">
+		<div class="link-card-text text-center md:text-start">
 			<h2>
 				{title}
 				<span>&rarr;</span>
@@ -55,6 +55,7 @@ const { href, title, body, image } = Astro.props;
 		font-size: 1.25rem;
 		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 	}
+
 	p {
 		margin-top: 0.5rem;
 		margin-bottom: 0;
