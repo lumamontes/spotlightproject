@@ -11,17 +11,18 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<meta name="title" content="Spotlight project" />
 		<meta
 		name="description"
 		content="Spotlight Project by Luana"
 	  	/>
-	 	<meta property="og:url" content="https://spotlight.vercel.app" />
-		<meta property="og:site_name" content="https://spotlight.vercel.app" />
+		<!-- Open Graph / Facebook -->
+	 	<meta property="og:url" content="https://spotlightproject.vercel.app" />
+		<meta property="og:site_name" content="https://spotlightproject.vercel.app" />
 		<meta property="og:type" content="website" />
 		<meta
 		property="og:title"
@@ -29,14 +30,15 @@ const { title } = Astro.props;
 		/>
 		<meta
 		property="og:description"
-		content={title}
+		content="Spotlight Project by Luana"
 		/>
-		<meta property="og:image" content="https://spotlight.vercel.app/placeholder.png" />
-		
+
+		<meta property="og:image" content="https://spotlightproject.vercel.app/placeholder.png" />
+		<!-- Twitter -->
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content="Spotlight Project by Luana" />
-		<meta name="twitter:image" content="https://spotlight.vercel.app/placeholder.png" />
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:image" content="https://spotlightproject.vercel.app/placeholder.png" />
+		<meta name="twitter:card" content="summary_large_image" />
 
 	</head>
 
