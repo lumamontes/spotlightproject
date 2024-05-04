@@ -60,22 +60,9 @@ const interviews = entries.items.map((item) => {
 
 <Layout title="Spotlight">
 	<main>
-		<header class="home-hero relative" role="banner">
-			<video playsinline autoplay muted loop poster="placeholder.png" id="bgvideo" class="z-0">
-			  <source src="herovideo.mp4" type="video/mp4">
-			</video>
-			<div class="absolute inset-0 bg-black opacity-50 z-10"></div>
-			<img alt="poster image mobile" class="poster object-contain mx-auto block sm:hidden z-0" src="placeholder.png" />
-			<div class="container flex flex-row z-20">
-				<div class="flex flex-wrap">
-					<div class="w-full lg:w-12/12 flex flex-col justify-center text-white py-5 text-container">
-					  <h1 class="font-bold mb-0 text-4xl md:text-7xl"><span class="block font-bold">Spotlight Project</span></h1>
-					  <p class="text-3xl my-4">By  <a href="https://luanagoes.vercel.app" target="_blank">Luana Góes</a></p>
-					  <p class="text-xl">A project where I interview artists who are dear to me ❤️</p>
-					</div>
-				  </div>
-			</div>
-		  </header>
+		<header class="home-hero" role="banner">
+			<img alt="poster image " class="poster  mx-auto block" src="hero.png" />
+		</header>
 		
 		 <SectionTitle title="Interviews" />
 				<div class="background-floating-image">
@@ -99,73 +86,22 @@ const interviews = entries.items.map((item) => {
 	transform: scaleX(-1);
 }
 
-.background-floating-image {
-  position: relative;
-  background-image: url('floating.png');
-  background-size: cover;
-}
-
-.background-floating-image::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color:  rgba(19, 21, 27, 0.463)
-}
-
 main {
 	margin: auto;
 	overflow-x: hidden;
-	/* padding: 1rem; */
-	/* width: 800px; */
-	/* max-width: calc(100% - 2rem); */
 	color: white;
-	/* font-size: 20px; */
-	/* line-height: 1.6; */
-	
 }
 
 header.home-hero {
-	position: relative;
-	height: 89vh;
-	min-height: 25rem;
-	width: 100%;
-	overflow: hidden;
-	
-}
-
-header.home-hero .container {
-    position: relative;
-    height: 100%;
-}
-
-header.home-hero video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: 0;
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-	
+	max-width: 80vw;
+	margin: auto;
 }
 
 header.home-hero img.poster {
-    height: 100vh;
-    min-height: 100vh;
-    object-fit: cover;
-    object-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;	
+    height: 80vh;
+	 object-fit: cover;
 }
+
 .link-card-grid {
 		display: grid;
 		grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -177,24 +113,12 @@ header.home-hero img.poster {
 }
 
 .text-container {
-        /* background-image: */
-        /* linear-gradient(#1414142b, #0f0f0f, #000); */
-        /* border-left: 2px solid #212121; */
-        /* border-right: 2px solid #212121; */
 		margin: auto;
-		/* margin-top: 8rem; */
 		padding: 1rem;
 		width: 800px;
 		text-align: center;
-		/* background-color: red; */
 		width: 100vw;
 		max-width: calc(100% - 2rem); 
-}
-
-@media (max-width: 575.98px) {
-		header.home-hero video {
-			display: none;
-	}
 }
 
 .text-gradient {
